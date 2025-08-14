@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> STI Enrollment Form</title>
+</head>
+<style>
+    .table {
+        border-color: azure;
+    }
+</style>
+
+<body>
+    <h1>STI Enrollment Form</h1>
+    <br>
+    <h3> A. Personal Information</h3>
+    <form>
+        <table>
+
+            <tr>
+                <td> <label for="fname"> First Name</label></td>
+                <td> <input type="text" id="fname" name="fname"> </td> <br> <br>
+            </tr>
+
+            <tr>
+                <td> <label for="mname"> Middle name</label>
+                <td> <input type="text" id="mname" name="mname"> <br>
+            </tr>
+
+            <tr>
+                <td> <label for="sname"> Surname</label>
+                <td> <input type="text" id="sname" name="sname"> <br>
+            </tr>
+            <tr>
+                <td> <label for="Suffix"> Suffix</label>
+                <td> <input type="Suffix" id="Suffix" name="Suffix"> <br>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <hr>
+    <h3> B. Sex</h3>
+    <form>
+        <input type="radio" id="female" name="Sex" value="Female">
+        <label for="female">Female</label>
+        <input type="radio" id="male" name="Sex" value="Male">
+        <label for="male">Male</label>
+        <input type="radio" id="other" name="Sex" value="Other">
+        <label for="other">Other</label>
+    </form>
+    <br>
+    <hr>
+    <h3> C. Nationality:</h3>
+    <form>
+        <input type="text" id="fname" name="fname"> </td> <br> <br>
+    </form>
+    <hr>
+    <h3> D. Email Address:</h3>
+    <form>
+        <input type="text" id="ea" name="ea"> </td> <br> <br>
+    </form>
+    <hr>
+    <h3> E. Phone Number:</h3>
+    <form>
+        <input type="text" id="pn" name="pn"> </td> <br> <br>
+    </form>
+    <hr>
+    <br>
+Thank you!
+<br>
+    <form>
+        <input type="reset"> 
+        <input type="submit">
+    </form>
+</html>
