@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Web Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base & Body Styles --- */
+        :root {
+            --bg-dark-primary: #222427;
+            --bg-dark-secondary: #1f2124;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --border-color: #252b33;
+            --brand-color: #f39324;
+            --brand-color-hover: #f39324;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-primary);
+            color: var(--text-primary);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- Utility & Layout --- */
+        .container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        /* --- Header & Navigation --- */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transition: background-color 0.3s ease-in-out;
+            background: rgba(13, 17, 23, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+        }
+        
+        #header.scrolled {
+             background: rgba(13, 17, 23, 0.9);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: none; /* Hidden on mobile */
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            margin: 0 1rem;
+        }
+        
+        .nav-menu a:hover {
+            color: white;
+        }
+
+        #mobile-menu-button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        #mobile-menu {
+            display: none;
+            padding-bottom: 1rem;
+        }
+
+        #mobile-menu a {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: linear-gradient(to bottom, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 1) 100%), url('https://placehold.co/1920x1080/0d1117/c9d1d9?text=Code+Background');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: var(--brand-color);
+            color: white;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--brand-color-hover);
+        }
+        
+        /* --- About Section --- */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-image img {
+            max-width: 250px;
+            border-radius: 50%;
+            border: 4px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 65ch; /* Improves readability */
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* --- Projects Section --- */
+        #projects {
+            background-color: var(--bg-dark-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--bg-dark-primary);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-link {
+            color: white;
+            border: 1px solid white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        
+        .project-link:hover {
+            background-color: white;
+            color: black;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .project-info p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* --- Skills Section --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .skill-badge {
+            background-color: var(--border-color);
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.1);
+            background-color: var(--brand-color);
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            background-color: var(--bg-dark-secondary);
+        }
+
+        .contact-intro {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-form {
+            max-width: 768px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-input, .form-textarea {
+            display: block;
+            width: 100%;
+            background-color: var(--bg-dark-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--brand-color);
+            box-shadow: 0 0 0 3px rgba(35, 134, 54, 0.4);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+        }
+        
+        .form-submit {
+            text-align: center;
+        }
+
+        #form-message {
+            margin-top: 1rem;
+            text-align: center;
+            height: 1.5rem; /* Reserve space to prevent layout shift */
+        }
+        
+        /* --- Footer --- */
+        footer {
+            background-color: var(--bg-dark-primary);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            margin: 0 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+
+        /* --- Animations --- */
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Responsive Design --- */
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+            #mobile-menu-button {
+                display: none;
+            }
+            .hero-title {
+                font-size: 4.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            .about-content {
+                flex-direction: row;
+                text-align: left;
+            }
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="nav-brand">VONTIBEY</a>
+                <nav class="nav-menu">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <button id="mobile-menu-button" aria-label="Open Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="container">
+                <h1 class="hero-title">Marvhon Margacinio</h1>
+                <p class="hero-subtitle">Graphic Designer</p>
+                <a href="#projects" class="cta-button">View My Work</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section-fade-in">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="vhon.jpg" alt="John Doe">
+                    </div>
+                    <div class="about-text">
+                        <p>
+                            Hello! I'm vhon, a passionate full-stack developer with a love for creating beautiful, functional, and user-centered digital experiences. With over 5 years in the industry, I have a proven track record of designing, developing, and deploying robust web applications.
+                        </p>
+                        <p>
+                            My journey in web development started with a simple "Hello, World!" and has since grown into a full-fledged passion for solving complex problems and learning new technologies. I specialize in the MERN stack but I'm always eager to explore new frameworks and tools.
+                        </p>
+                        <p>
+                            When I'm not coding, you can find me exploring the outdoors, contributing to open-source projects, or brewing the perfect cup of coffee.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-fade-in">
+            <div class="container">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-grid">
+                    <!-- Project Card 1 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="vhon.jpg" alt="Project 1">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="#" class="project-link">Source Code</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>E-Commerce Platform</h3>
+                            <p>A feature-rich online store built with React, Node.js, and MongoDB. Includes product management, user authentication, and a Stripe payment gateway.</p>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="project-card">
+                         <div class="project-image">
+                            <img src="vhon.jpg" alt="Project 2">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="#" class="project-link">Source Code</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Task Management App</h3>
+                            <p>A collaborative task manager inspired by Trello, built with Vue.js and Firebase. Features drag-and-drop functionality and real-time updates.</p>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="project-card">
+                         <div class="project-image">
+                            <img src="vhon.jpg" alt="Project 3">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="#" class="project-link">Source Code</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Data Visualization Dashboard</h3>
+                            <p>An interactive dashboard for visualizing complex datasets using D3.js and React. Connects to a REST API to fetch and display data in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section-fade-in">
+            <div class="container">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-container">
+                    <span class="skill-badge">Graphic Design</span>
+                    <span class="skill-badge">Adobe Photoshop</span>
+                    <span class="skill-badge">Illustrator</span>
+                    <span class="skill-badge">Logo Design</span>
+                    <span class="skill-badge">Print Document Layouts</span>
+                    <span class="skill-badge">Brochures</span>
+                    <span class="skill-badge">Figma</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-fade-in">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="contact-intro">Have a project in mind or just want to say hi? Feel free to reach out!</p>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="form-textarea"></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </div>
+                </form>
+                <div id="form-message"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/vonmrgcn20">GitHub</a>
+                <a href="https://www.instagram.com/von_mrgcn">Instagram</a>
+                <a href="https://www.facebook.com/vonmrgcn">Facebook</a>
+                <a href="#">Tiktok</a>
+            </div>
+            <p>&copy; 2025 Marvhon Margacinio. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                // Use style.display for direct manipulation
+                const isDisplayed = mobileMenu.style.display === 'block';
+                mobileMenu.style.display = isDisplayed ? 'none' : 'block';
+            });
+
+            // --- Close mobile menu on link click ---
+            const navLinks = document.querySelectorAll('#mobile-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.style.display = 'none';
+                });
+            });
+
+            // --- Header Background on Scroll ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Section Fade-in on Scroll ---
+            const sections = document.querySelectorAll('.section-fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Optional: stop observing once visible
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- Contact Form Submission ---
+            const contactForm = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+                formMessage.style.color = '#4ade80'; // a light green color
+                contactForm.reset();
+
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000);
+            });
+        });
+    </script>
+
+</body>
+</html>
+
